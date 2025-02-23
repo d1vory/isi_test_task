@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'chat.apps.ChatConfig',
     'accounts.apps.AccountsConfig',
 
-    'rest_framework'
+    'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
