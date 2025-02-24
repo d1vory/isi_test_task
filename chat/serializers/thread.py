@@ -4,34 +4,27 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import ModelSerializer
 
-from accounts.serializers.user import UserSerializer
 from chat.models import Thread
-from chat.serializers.message import MessageSerializer
-
-
-class ThreadListSerializer(ModelSerializer):
-
-    class Meta:
-        model = Thread
-        fields = ('id', 'created', 'updated', )
 
 
 class ThreadSerializer(ModelSerializer):
     participants = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True)
-    messages = MessageSerializer(many=True, read_only=True)
+    unread_messages_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
-        fields = ('id', 'created', 'updated', 'participants', 'messages')
-        read_only_fields = ('id', 'created', 'updated', 'messages')
+        fields = ('id', 'created', 'updated', 'participants', 'unread_messages_count')
+        read_only_fields = ('id', 'created', 'updated', 'unread_messages_count')
 
+    def get_unread_messages_count(self, instance: Thread):
+        return instance.messages.filter(is_read=False).count()
 
     def validate_participants(self, value: list[User]):
         user = self.context['request'].user
         if user not in value:
             value.append(user)
         if len(value) > 2:
-            raise ValidationError('Thread cannot contain more than 2 persons')
+            raise ValidationError('Thread cannot contain more than 2 people')
         return value
 
     def create(self, validated_data):

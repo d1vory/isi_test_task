@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 
 from chat.models import Thread
-from chat.serializers.thread import ThreadSerializer, ThreadListSerializer
+from chat.serializers.thread import ThreadSerializer
 
 
 class ThreadViewSet(
@@ -14,15 +14,8 @@ class ThreadViewSet(
     GenericViewSet
 ):
     queryset = Thread.objects.all()
-    list_serializer_class = ThreadListSerializer
     serializer_class = ThreadSerializer
-    retrieve_serializer_class = ThreadSerializer
     permission_classes = (IsAuthenticated, )
-
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return self.list_serializer_class
-        return self.serializer_class
 
     def get_queryset(self):
         user_id = self.request.query_params.get('user_id') or self.request.user.id
