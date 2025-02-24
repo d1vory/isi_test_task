@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "sqlite3 /app/data/db.sqlite3 < /app/data/db_dump.sql && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
