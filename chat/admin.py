@@ -11,6 +11,7 @@ class MessageInlineAdmin(admin.StackedInline):
     model = Message
     extra = 0
     readonly_fields = ('created', )
+    raw_id_fields = ('sender',)
 
 
 @admin.register(Thread)
