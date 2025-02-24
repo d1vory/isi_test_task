@@ -25,5 +25,6 @@ class ThreadViewSet(
         return self.serializer_class
 
     def get_queryset(self):
-        return super().get_queryset().filter(participants=self.request.user)
+        user_id = self.request.query_params.get('user_id') or self.request.user.id
+        return super().get_queryset().filter(participants__id=user_id)
 
