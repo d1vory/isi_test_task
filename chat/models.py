@@ -10,7 +10,7 @@ class Thread(models.Model):
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='messages')
     text = models.TextField()
     is_read = models.BooleanField(default=False)
     created= models.DateTimeField(auto_now_add=True)
