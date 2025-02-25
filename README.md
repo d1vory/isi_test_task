@@ -14,8 +14,8 @@ This is a test task.
 1. Clone this repository:
 
    ```sh
-   git clone https://github.com/your-repo/django-docker.git
-   cd django-docker
+   git clone https://github.com/d1vory/isi_test_task
+   cd isi_test_task
    ```
 2. Create **.env** file from **.env_example**
 
