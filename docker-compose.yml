@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "if [ ! -f /app/db.sqlite3 ]; then sqlite3 /app/db.sqlite3 < /app/db_dump.sql; fi && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"

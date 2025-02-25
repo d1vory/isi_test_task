@@ -1,0 +1,14 @@
+asgiref==3.8.1
+Django==5.1.6
+djangorestframework==3.15.2
+drf-nested-routers==0.94.1
+drf-yasg==1.21.8
+Faker==36.1.1
+inflection==0.5.1
+packaging==24.2
+python-decouple==3.8
+pytz==2025.1
+PyYAML==6.0.2
+sqlparse==0.5.3
+tzdata==2025.1
+uritemplate==4.1.1
