@@ -19,6 +19,10 @@ This is a test task.
    ```
 2. Create **.env** file from **.env_example**
 
+    ```sh
+   cp .env_example .env
+   ```
+
 3. Start the project using Docker Compose:
 
    ```sh
@@ -29,6 +33,17 @@ This is a test task.
 
    - API documentation (Swagger): [http://localhost:8000/swagger](http://localhost:8000/swagger)
    - Django app: [http://localhost:8000](http://localhost:8000)
+
+
+### Admin Credentials
+
+- Username: `d1vory`
+- Password: `testpass123`
+
+### User Credentials
+
+- Every account has the same password: `testpass123`
+
 
 ### Stopping the Project
 
